@@ -106,3 +106,65 @@ print(num) #출력: 10
 #   * 동등연산자(==): Equal
 #   * 초기화: 초기 변수를 생성 하면 쓰레기 파일들이 존재
 #            변수에 값을 대입하면 초기화 값만 저장!
+
+# name(변수명), = (대입연산자), "cherry"(값)
+name = "cherry"
+
+# 7.명명규칙(Naming Rule)
+# * 변수, 함수, 클래스 등의 사용자 정의 이름에 사용
+# * 명확하고 알아보기 쉽게!!
+#
+# 1.영문 대소문자, 숫자, 특수문자(_)만 사용
+# 2.숫자로 시작할 수 없음
+# - abc1(0), 1abc(X)
+# 3.영어 대소문자 구별
+# - abc ABC Abc ABc 모두 다른 변수로 인식
+# 4.예약어 사용 불가
+# - 예약어: Python 에서 미리 선점하여 사용준인 키워드
+#       Ex) print, for, while, if, else, class, and,
+#           return, import, def, pass 등
+
+
+# 8.Naming Method
+# - 변수, 함수, 클래스 등의 사용자 정의 이름에
+#   사용하는 기법
+# - 프로그래밍 언어별로 사용하는 Naming Method 가 다름
+
+# 1.snake_case: 소문자만 사용, 합성어는 _사용
+#  ex) chosun_student_name
+# 2. camelCase: 첫글자 소문자, 합성어 첫글자 대문자
+#   ex) chosunStudentName
+# 3.PascalCase: 첫글자 대문자, 합성어 첫글자 대문자
+#   ex) ChosunStudentName
+
+
+
+#             변수          함수          클래스
+# Jave, C   camelCase   camelCase()   PascalCase
+# Python    snake_case  snake_case()  PascalCase
+
+# 9.동적 출력
+print("="*50)
+student_num = 20222702
+student_name = "bjw"
+# 출력 예: "조선대학교 20222702, bjw 입니다"
+print("조선대학교 20222702, bjw 입니다") #하드 코딩 지양
+# 1.format() - Old
+print("조선대학교 {}, {} 입니다".format(student_num, student_name))
+# 2. f-string - New
+print(f"조선대학교 {student_num}, {student_name} 입니다")
+
+# 10. 간단한 사칙연산
+# + : 더하기
+# - : 빼기
+# * : 곱하기
+# ** or ^ : 제곱  ex)3^2
+# 5/2 : 나누기        2.5
+# 5%2 : 나누기(나머지) 1
+# 5//2 : 나누기(몫)   2
+
+# Quiz
+num = 9
+num - 1
+num + 2
+print(num) #9
