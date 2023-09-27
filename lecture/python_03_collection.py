@@ -186,3 +186,16 @@ print(abc)
 
 a = {}
 print(type(a))
+
+# 1. LIST [], 수정가능
+# 2. Tuple (), 수정 불가능!
+#     (1, 2, 3) => 1, 2, 3
+#     (1) => 1,
+#
+# 3. DICT {key:value}
+# 4. SET {}
+#     -중복값 허용X
+#
+# List(), tuple(), set()
+#
+# DICT: JSON(데이터 전송 포맷)
