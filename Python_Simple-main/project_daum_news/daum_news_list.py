@@ -1,4 +1,4 @@
-# 다음 실시간 뉴스 목록(15개) 기사 [제목,
+# 다음 실시간 뉴스 목록(15개) 기사 [제목, 본문, 날짜] 수집기
 
 from bs4 import BeautifulSoup
 import requests
