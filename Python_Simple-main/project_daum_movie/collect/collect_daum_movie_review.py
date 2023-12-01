@@ -28,7 +28,7 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
 
-def review_collector(movie_code):
+def review_collector(movie_code, last_date):
     # 1.Selenium 전용 웹 브라우저 구동
     options = Options()
     options.add_experimental_option("detach",True)
@@ -88,19 +88,9 @@ def review_collector(movie_code):
 
 
     # item: 리뷰 1건(평점, 리뷰, 작성자, 작성일자)
+    count = 0
     for item in review_list:
-        print("="*100)
-        review_score = item.select("div.ratings")[0].get_text()
-        print(f"   - 평점: {review_score}")
-
-        review_comment = item.select("p.desc_txt")[0].get_text()
-        # \n : 한줄 개행 -> \n을 제거
-
-        review_content = re.sub("\n", "", review_comment)
-        print(f"   - 리뷰: {review_comment}")
-
-        review_writer = item.select("a.link_nick > span")[1].get_text()  # [댓글 작성자, 작성자, 댓글모아보기]
-        print(f"   - 작성자: {review_writer}")
+        # 수집리뷰와 Date와 last_date 비교
 
         # 다음 영화 리뷰 날짜 표시 방법
         # 1. "조금전"
@@ -124,6 +114,33 @@ def review_collector(movie_code):
             reg_hour = int(re.sub(r"[^~0-9]", "", review_date))
             review_date = datetime.now() - timedelta(hours=reg_hour)
             review_date = review_date.strftime("%Y. %m. %d. %H:%M")
+        collect_date = int(re.sub(r"[^~0-9]", "", review_date))
+        if last_date >= collect_date:
+            continue
+
+
+
+
+
+
+
+
+
+
+
+        count +=1
+        print("="*100)
+        review_score = item.select("div.ratings")[0].get_text()
+        print(f"   - 평점: {review_score}")
+
+        review_comment = item.select("p.desc_txt")[0].get_text()
+        # \n : 한줄 개행 -> \n을 제거
+
+        review_content = re.sub("\n", "", review_comment)
+        print(f"   - 리뷰: {review_comment}")
+
+        review_writer = item.select("a.link_nick > span")[1].get_text()  # [댓글 작성자, 작성자, 댓글모아보기]
+        print(f"   - 작성자: {review_writer}")
         print(f"   - 날짜: {review_date}")
 
         #24시간 이내에 작성 된 리뷰의 날짜 -> 24시간전, 3시간전 -> 다음영화날짜(2023, 11, 17, 2:12)
@@ -149,3 +166,6 @@ def review_collector(movie_code):
             "reg_date": review_date
         }
         add_review(data)
+    # 수집한 리뷰 건수 출력
+    now = datetime.now().strftime("%Y.%m.%d %H:%M:%S")
+    print(f"{now} -> 수집한 리뷰{count}건")
